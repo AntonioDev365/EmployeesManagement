@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <title>Save Employee</title>
+</head>
+<body>
+<div class="container">
+    <h3 class="mt-4">Employee Management System <i class="fas fa-cog"></i></h3>
+    <hr>
+    <p class="h4 mb-4">Save Employee</p>
+
+    <!-- th:object ${employee} is a reference to our model attribute-->
+    <form action="#" th:action="@{/employees/save}"
+          th:object="${employee}" method="POST">
+        <!--*{} select a property on the referenced th:object in this case first name-->
+        <!--This binds to the model attribute, tells my app which employee to update
+         hidden form fields required for updates-->
+        <input type="hidden" th:field="*{id}"/>
+        <input type="text" th:field="*{firstName}"
+               class="form-control mb-4 col-4" placeholder="First Name">
+        <input type="text" th:field="*{lastName}"
+               class="form-control mb-4 col-4" placeholder="Last Name">
+        <input type="text" th:field="*{email}"
+               class="form-control mb-4 col-4" placeholder="Email">
+        <input type="text" th:field="*{age}"
+               class="form-control mb-4 col-4" placeholder="Age">
+        <input type="text" th:field="*{salary}"
+               class="form-control mb-4 col-4" placeholder="Salary">
+        <button type="submit" class="btn btn-info col-2">Save <i class="fa fa-user-plus" aria-hidden="true"></i></button>
+        <!--Remember! When form is loaded will call getter methods to populate form fields initially
+        employee.getFistName()...-->
+        <!--Remember! When form is submitted will call setters methods to populate Java object with form data
+        employee.setFirstName()...-->
+    </form>
+    <hr>
+    <a th:href="@{/employees/list}" class="btn btn-danger btn-sm p-2 "><i class="fa fa-reply" aria-hidden="true"></i> Employees Table</a>
+</div>
+</body>
+</html>
